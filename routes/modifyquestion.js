@@ -11,6 +11,13 @@ const router = express.Router();
 router.get("/", async(req, res)=> {
   session = req.session;
   if (req.session.userid) {
+
+
+    let allquestions = await currentuser.questions.then(()=> {
+      console.log("ok")}).catch((h)=> {
+      console.log(h)})
+
+
     currentuser = await usersm.findOne({
       email: req.session.userid
     }).populate({
@@ -22,10 +29,7 @@ router.get("/", async(req, res)=> {
       })
       console.log("working")}).catch((err)=> {
       console.log(err)})
-
-    let allquestions = await currentuser.questions.then(()=> {
-      console.log("ok")}).catch((h)=> {
-      console.log(h)})/*await questions.find({}).populate("tags").populate("author").populate("votes").sort("votes");*/
+    /*await questions.find({}).populate("tags").populate("author").populate("votes").sort("votes");*/
     // res.send(allquestions)
 
     /*   res.send(allquestions) */
