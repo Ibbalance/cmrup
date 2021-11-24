@@ -20,7 +20,9 @@ router.get("/", async(req, res)=> {
       console.log("working")}).catch((err)=> {
       console.log(err)})
 
-    let allquestions = await currentuser.questions/*await questions.find({}).populate("tags").populate("author").populate("votes").sort("votes");*/
+    let allquestions = await currentuser.questions.then(()=> {
+      console.log("ok")}).catch((h)=> {
+      console.log(h)})/*await questions.find({}).populate("tags").populate("author").populate("votes").sort("votes");*/
     // res.send(allquestions)
     res.render("modifylist", {
       allquestions, currentuser
