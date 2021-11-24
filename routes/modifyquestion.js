@@ -73,7 +73,10 @@ router.get("/delete/:id", async(req, res)=> {
   const currentuser = await usersm.findOne({
     email:
     req.session.userid
-  }).populate("questions")
+  }).populate("questions").then(()=> {
+    console.log("working..")}).catch((err)=> {
+    console.log("err")
+  })
 
 
   question = allquestions = await questions.find().populate("tags").populate("author").populate("votes").sort("votes");
