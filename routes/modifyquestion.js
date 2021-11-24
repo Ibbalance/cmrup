@@ -22,9 +22,9 @@ router.get("/", async(req, res)=> {
         path: "tags"
       }}).then(()=> {
 
-      let allquestions = await currentuser.questions.then(()=> {
+      allquestions = await currentuser.questions.then(()=> {
         console.log("ok")}).catch((h)=> {
-        console.log(h)})
+        console.log(h)});
 
 
       res.render("modifylist", {
