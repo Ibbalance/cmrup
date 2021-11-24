@@ -47,13 +47,17 @@ router.get("/edit/:qid", async(req, res)=> {
     email:
     req.session.userid
   }).populate("questions").then(()=> {
+
+    res.render("modifyquestion", {
+      question, currentuser
+    })
+
+
     console.log("working..")}).catch((err)=> {
     console.log("err")
   })
 
-  res.render("modifyquestion", {
-    question, currentuser
-  })  //( res.send(question)
+  //( res.send(question)
 
 })
 
