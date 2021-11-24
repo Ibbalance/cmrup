@@ -63,7 +63,10 @@ router.get("/delete/:id", async(req, res)=> {
       console.log(err)
     }
     console.log("sucess")
-  }).clone()
+  }).clone().then(()=> {
+    console.log("working..")}).catch((err)=> {
+    console.log("err")
+  })
 
 
 
