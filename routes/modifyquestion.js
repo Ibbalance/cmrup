@@ -107,7 +107,10 @@ router.post("/update/:id", async(req, res)=> {
     console.log("working..")}).catch((err)=> {
     console.log("err")
   })
-  question = allquestions = await questions.find().populate("tags").populate("author").populate("votes").sort("votes");
+  question = allquestions = await questions.find().populate("tags").populate("author").populate("votes").sort("votes").then(()=> {
+    console.log("working..")}).catch((err)=> {
+    console.log("err")
+  })
 
 
 
