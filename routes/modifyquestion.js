@@ -118,7 +118,10 @@ router.post("/update/:id", async(req, res)=> {
     {
       questiontitle: req.body.title,
       questionbody: req.body.questionbody
-    });
+    }).then(()=> {
+      console.log("working..")}).catch((err)=> {
+      console.log("err")
+    })
   // await tuu.save()
   res.render("allQuestions",
     {
