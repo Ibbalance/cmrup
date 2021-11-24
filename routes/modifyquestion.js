@@ -17,6 +17,9 @@ router.get("/", async(req, res)=> {
       path: "questions", populate: {
         path: "tags"
       }}).then(()=> {
+      res.render("modifylist", {
+        allquestions, currentuser
+      })
       console.log("working")}).catch((err)=> {
       console.log(err)})
 
@@ -24,9 +27,7 @@ router.get("/", async(req, res)=> {
       console.log("ok")}).catch((h)=> {
       console.log(h)})/*await questions.find({}).populate("tags").populate("author").populate("votes").sort("votes");*/
     // res.send(allquestions)
-    res.render("modifylist", {
-      allquestions, currentuser
-    })
+
     /*   res.send(allquestions) */
 
   } else {
