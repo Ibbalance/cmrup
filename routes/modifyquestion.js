@@ -35,7 +35,10 @@ router.get("/", async(req, res)=> {
 
 router.get("/edit/:qid", async(req, res)=> {
 
-  question = await questions.findById(req.params.qid).populate("author").populate("")
+  question = await questions.findById(req.params.qid).populate("author").then(()=> {
+    console.log("working..")}).catch((err)=> {
+    console.log("err")
+  })
 
   const currentuser = await usersm.findOne({
     email:
