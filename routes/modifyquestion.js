@@ -16,7 +16,8 @@ router.get("/", async(req, res)=> {
     }).populate({
       path: "questions", populate: {
         path: "tags"
-      }})
+      }}).then(()=> {
+      console.log("working")})
 
     let allquestions = currentuser.questions/*await questions.find({}).populate("tags").populate("author").populate("votes").sort("votes");*/
     // res.send(allquestions)
