@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <style>
+    .menu {
+      width: 35px;
+      height: 5px;
+      background-color: white;
+      margin: 6px 0;
+    }
+
+  </style>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.sstatic.net/Shared/stacks.css?v=47f2e10eb087">
+  <link rel="stylesheet" type="text/css" href="https://cdn.sstatic.net/Sites/stackoverflow/mobile.css?v=53488819bdc3">
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+
+
+
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="" content="">
+  <title></title>
+</head>
+<body>
+  <ul class="bg-dark nav">
+    <a onclick="myFunction()" class="nav-link">  <div class="bg-dark" id="menucontainer " style="margin:0">
+      <div class="menu"></div>
+      <div class="menu"></div>
+      <div class="menu"></div>
+    </div>
+    </a>
+    <a href="" class="nav-link pt-3 pl-4 text-white"> CMR TC FORUM   </a>
+
+
+  </ul>
+  <br />
+  <div id="navs" style="display:none;" class="container shadow ">
+    <ul class="navbar justify-content-center">
+      <a href="" class="nav-link">  <img width="70" height="70" class="img-thumbnail nav-link" src="/<%=currentuser.profilepic%>">    </a>
+      <a href="/users/<%=currentuser._id%>" class="nav-link"> <%= currentuser.displayname %>  </a>
+
+
+      <a href="/modify" style="text-decoration-none"> Modify </a>
+    </ul>
+
+
+  </div>
+
+
+
+
+
+
+
+  <ul class="nav nav-pills nav-fill justify-content-between pt-4">
+    <a class="nav-link" href="/allquestions"> Questions</a>
+    <a class="nav-link" href="/tags"> Tags</a>
+    <a class="nav-link" href="/newQuestion"> Ask</a>
+  </ul>
+
+  <br>
+
+
+  <div class="">
+
+
+
+    <%  for (question of allquestions) {
+      %>
+
+      <% countzza = 0
+      for (vote of question.votes) {
+
+
+
+        let g = JSON.stringify(vote)
+        d = JSON.parse(g)
+        hh = JSON.stringify(d)
+        ggg = JSON.parse(hh)
+        countzza += ggg.votescount
+      }
+
+
+      %>
+
+
+
+      <div class="-summary ">
+        <div class="-votes answered-accepted">
+          <div class="vote-block d-inline-block">
+            <a href="/modify/edit/<%=question._id%>"> Edit </a>
+            <br>
+            <br>
+
+          </div>
+          <div class="answer-block d-inline-block">
+            <span class="mini-counts" title="27"> </span>
+
+
+            <a href="/modify/delete/<%=question._id%>" style="text-decoration-none;color:red" class="text-danger">
+              Delete
+            </a>
+          </div>
+        </div>
+
+        <!-- / votes -->
+        <div class="-details">
+          <h2><a href="/questiondetail/<%=question._id%>/<%=currentuser._id%>">
+            <%= question.questiontitle %>
+          </a></h2>
+          <div class="-tags">
+            <% tags = question.tags.tagnames[0].split(" ") %>
+            <% for (t of tags) {
+              %>
+
+              <a href="/tags/<%=t%>" class="post-tag"><%= t %></a>
+
+              <%
+            } %>
+          </div>
+          <!-- / tags -->
+          <small class="-meta">
+            <a href="/questions/11227809/why-is-processing-a-sorted-array-faster-than-processing-an-unsorted-array?lastactivity" class="-time">
+              <span title="2021-08-11 07:28:17Z" class="relativetime"><%= moment(question.created).fromNow()%></span>
+            </a>
+            <a href="/users/<%= question.author._id%>" class="author"><%=question.author.displayname%></a>
+          </small><!-- / meta -->
+        </div>
+        <!-- / details -->
+      </div>
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+    <%
+  }
+  %>
+
+
+  <!--   <div class="container shadow">
+                                                                                                                                          no questions
+                                                                                                                                        </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- <div class="container bg-light shadow p-5">
+                                                                                                                                                                        No Questions At the moment
+                                                                                                                                                                      </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script>
+    function myFunction() {
+      var x = document.getElementById("navs");
+      if (x.style.display === "block") {
+        x.style.display = "none";
+      } else {
+        x.style.display = "block";
+      }
+    }
+
+  </script>
+
+
+  <script src="/javascripts/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

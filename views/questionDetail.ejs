@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <style>
+
+    .menu {
+      width: 35px;
+      height: 5px;
+      background-color: white;
+      margin: 6px 0;
+    }
+  </style>
+
+
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.sstatic.net/Shared/stacks.css?v=47f2e10eb087">
+  <link rel="stylesheet" type="text/css" href="https://cdn.sstatic.net/Sites/stackoverflow/mobile.css?v=53488819bdc3">
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0">
+
+
+
+
+  <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+
+
+
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="" content="">
+  <title></title>
+</head>
+<body>
+
+  <ul class="bg-dark nav">
+    <a onclick="myFunction()" class="nav-link">  <div class="bg-dark" id="menucontainer " style="margin:0">
+      <div class="menu"></div>
+      <div class="menu"></div>
+      <div class="menu"></div>
+    </div>
+    </a>
+    <a href="" class=" mx-auto nav-link pt-3 pl-4 text-white"> <img src="cmrlogo.png" width="100px" height="60px">  </a>
+
+
+  </ul>
+  <br />
+  <div id="navs" style="display:none;" class="container shadow ">
+    <ul class="navbar justify-content-center">
+      <a href="" class="nav-link"> <img width="70" height="70" class="img-thumbnail nav-link" src="/<%=currentuser.profilepic%>">    </a>
+
+      <a href="/users/<%=currentuser._id%>" class="nav-link"> <%=  currentuser.displayname  %>  </a>
+
+      <!--    <a href="" class="nav-link"> <img width="70" height="70" class="img-thumbnail nav-link" src="<%=currentuser.profilepic%>">    </a>
+                                                                                <a href="" class="nav-link"> <%=  currentuser.displayname  %>  </a>
+                                                                                -->
+
+      <a href="/modify" style="text-decoration-none"> Modify </a>
+
+    </ul>
+
+
+  </div>
+
+
+
+
+
+
+
+  <ul class="nav nav-pills nav-fill justify-content-between pt-4">
+    <a class="nav-link" href="/allquestions"> Questions</a>
+    <a class="nav-link" href="/tags"> Tags</a>
+    <a class="nav-link" href="/newQuestion"> Ask</a>
+  </ul>
+  <br>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<div itemscope>
+
+  <div class="question" id="question" data-questionid="69636667">
+
+    <header class="-summary">
+      <div class="-votes vote js-voting-container" data-post-id="69636667" data-ltu="False">
+        <a onclick='upvote("/newVote/upvote/question/<%=question._id %>/<%= currentuser._id %>","<%=question._id%>")' class="upvoteh btn js-vote-up-btn vote-up-off" title="This question shows research effort; it is useful and clear" href="#">Up vote</a>
+
+        <% countzz = 0
+        for (vote of question.votes) {
+
+
+
+          let g = JSON.stringify(vote)
+          d = JSON.parse(g)
+          hh = JSON.stringify(d)
+          ggg = JSON.parse(hh)
+          countzz += ggg.votescount
+        }
+
+
+        %>
+        <span itemprop="upvoteCount" class="js-vote-count vote-count-post mobile-vote-count" data-value="0" id="<%=question._id %>"><%=  countzz %></span>
+        <a onclick='downvote("/newVote/downvote/question/<%=question._id%>/<%=currentuser._id%>/","<%=question._id%>")' id="up" class="btn js-vote-down-btn vote-down-off" title="This question does not show any research effort; it is unclear or not useful" tabindex="0" href="#">Down vote</a>
+
+
+      </div>
+
+
+      <div class="-details">
+        <h2 itemprop="name">
+
+          <a href="" class="question-hyperlink"><%= question.questiontitle %> </a>
+        </h2>
+        <div class="-tags">
+
+          <% tags = question.tags.tagnames[0].split(" ") %>
+          <% for (t of tags) {
+            %> <a href="/tags/<%=t%>" class="post-tag"><%= t %></a>
+
+            <%
+          } %>
+
+        </div>
+      </div>
+      <!-- / details -->
+    </header>
+
+    <div class="s-prose js-post-body" itemprop="text">
+
+      <p>
+        <%= question.questionbody%>
+      </p>
+      <br>
+
+      <%if (question.questioncode) {
+        %>
+        <pre>
+          <%= question.questioncode %>
+        </pre>
+
+
+        <%
+      } %>
+
+
+    </div>
+
+
+    <div class="menu-popup-container" data-postid="69636667" style="display:none;"></div>
+
+
+    <div class="user-info owner" itemprop="author" itemscope itemtype="">
+      <div class="user-action-time">
+        asked <span title="2021-10-19 19:29:05Z" class="relativetime"> <%= moment(question.created).fromNow()%>   </span>
+      </div>
+      <div class="user-gravatar">
+        <a href=""><div class="gravatar-wrapper-30">
+          <img src="/<%=question.author.profilepic%>" alt="" width="30" height="30" class="bar-sm">
+        </div>
+          <br>
+          <span> <a href="/users/<%=question.author._id%>"><%= question.author.displayname %></a> </span>
+        </a>
+      </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+  <br>
+  <br>
+
+  <div class="container nav justify-content-between">
+    <a class="nav-link"> <%= question.answers.length %> Answer(s)   </a>
+    <a class="nav-link"> Order by <span onclick="tt()"> Votes</span></a>
+
+
+
+
+
+  </div>
+  <br>
+  <br>
+
+  <!-- Post Answer -->
+  <div class="bg-light p-3">
+    <h4> Post Answer </h4>
+    <br>
+    <form action="/newAnswer/<%=currentuser._id%>/<%=question._id%>" method="post" enctype="multipart/form-data">
+      <textarea name="answer" class=" shadow-sm form-control" required cols="200"> </textarea>
+      <br>
+
+      <span> <input type="file" multiple name="answerfile"> Attach file</span>
+      <br>
+      <br>
+      <button type="button" onclick="toggle()" class=" btn-primary btn-md">&lt;code &gt;  &lt;code&gt; </button>
+      <br>
+      <br>
+      <textarea id="codearea" style="display:none;" name="answercode" class="form-control" placeholder="paste your code here" rows="6" cols="">
+      </textarea>
+      <br>
+      <br>
+
+      <button type="submit" class="btn btn-primary"> Post Answer</button>
+    </form>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <br>
+
+
+  <% for (answer of question.answers) {
+    %>
+
+
+    <% countzza = 0
+    for (vote of answer.votes) {
+
+
+
+      let g = JSON.stringify(vote)
+      d = JSON.parse(g)
+      hh = JSON.stringify(d)
+      ggg = JSON.parse(hh)
+      countzza += ggg.votescount
+    }
+
+
+    %>
+
+
+
+
+
+    <a name="69863160"></a>
+    <div class="-summary answer js-answer" data-answerid="69863160" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+      <div class="answer-body">
+        <div class="-votes vote js-voting-container" data-post-id="69863160" data-ltu="False">
+          <a onclick='(e)=>{e.preventDefault()};upvoteans("/newVote/upvote/answer/<%=answer._id %>/<%= currentuser._id %>","<%=answer._id%>")' class="upvoteh btn js-vote-up-btn vote-up-off" title="This question shows research effort; it is useful and clear" href="#">Up vote</a>
+          <span id="<%=answer._id%>" itemprop="upvoteCount" class="js-vote-count vote-count-post mobile-vote-count" data-value="0"><%= countzza %></span>
+          <a onclick='(e)=>{e.preventDefault()};downvoteans("/newVote/downvote/answer/<%=answer._id%>/<%=currentuser._id%>/","<%=answer._id%>")' id="up" class="btn  js-vote-down-btn vote-down-off" title="This question does not show any research effort; it is unclear or not useful" tabindex="0" href="">Down vote</a>
+
+        </div>
+
+
+        <div class="s-prose js-post-body" itemprop="text" style="background-color:lightblue">
+          <p>
+            <%=  answer.answer  %>
+          </p>
+
+
+          <%if (answer.answercode) {
+            %>
+            <pre class="">
+              <%= answer.answercode %>
+            </pre>
+
+
+            <%
+          } %>
+
+          <br>
+
+
+
+          <div class="bg-light">
+            <%if (answer.answerfile) {
+              %>
+              <p class="">
+                Attached Answer File
+              </p>
+              <% for (file of answer.answerfile) {
+                %>
+                <% function removePublic(string) {
+                  return string.slice(7)
+                } %>
+                <a href="/<%= removePublic(file.path) %>" download> Download attached file</a>
+                <br>
+
+
+                <%
+              } %>
+            </div>
+            <%
+          } %>
+
+
+        </div>
+      </div>
+      <time itemprop="dateCreated" datetime="2021-11-06T10:25:30"></time>
+      <span class="d-none" itemprop="url"></span>
+      <footer>
+        <div class="util-bar post-menu js-post-menu" data-post-id="69863160">
+
+
+
+        </div>
+        <div class="menu-popup-container" data-postid="69863160" style="display:none;"></div>
+
+
+        <div class="user-info " itemprop="author" itemscope itemtype="https://schema.org/Person">
+          <div class="user-action-time">
+            answered <span title="2021-11-06 10:25:30Z" class="relativetime">  <%= moment(answer.date).fromNow() %> </span>
+          </div>
+          <div class="user-gravatar">
+            <a href="/users/17342336/abhinav"><div class="gravatar-wrapper-30">
+              <img src="/<%=answer.author.profilepic%>" alt="" width="30" height="30" class="bar-sm">
+            </div>
+            </a>
+          </div>
+          <div class="user-details">
+            <a href="/users/<%=answer.author._id%>"><%= answer.author.displayname%> </a><br><span class="d-none" itemprop="name"> jdjfj</span>
+          </div>
+        </div>
+
+
+        <% for (comment of answer.comments) {
+          %>
+          <div id="comments-69763064" class="comments-wrap comments js-comments-container " data-post-id="69763064" data-min-length="15">
+            <ul class="comments-list js-comments-list" data-remaining-comments-count="0"
+              data-canpost="false"
+              data-cansee="true"
+              data-comments-unavailable="false"
+              data-addlink-disabled="true">
+
+              <li id="comment-123417321" class="comment js-comment " data-comment-id="123417321" data-comment-owner-id="849891" data-comment-score="0">
+                <div class="js-comment-actions comment-actions">
+                  <div class="comment-score js-comment-edit-hide">
+                  </div>
+                </div>
+                <div class="comment-text  js-comment-text-and-form">
+                  <div class="comment-body js-comment-edit-hide">
+
+                    <span class="comment-copy">
+                      <!--
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                it is quite easy to replace that horrible identicon auto-generated by gravatar for you, by uploading another image through the <a href="https://stackoverflow.com/users/edit/7752814">&quot;edit profile&quot;</a> option. in case you were wondering.-->
+                      <%= comment.comment %></span>
+
+                    <div class="d-inline-flex ai-center">
+                      &ndash;&nbsp;<a href="/users/<%=comment.author._id%>"
+                        title="66,348 reputation"
+                        class="comment-user"> <%=comment.author.displayname%></a>
+                    </div>
+                    <span class="comment-date" dir="ltr"><span title="2021-11-03 05:53:26Z, License: CC BY-SA 4.0" class="relativetime-clean"><%=moment(comment.created).fromNow() %></span></span>
+                  </div>
+                </div>
+              </li>
+
+            </ul>
+
+
+          </div>
+        </div>
+      </div>
+      <%
+    } %>
+
+
+
+
+
+
+    <a href="/newComment/<%=answer._id%>" class="text"> Add a comment</a>
+
+  </footer>
+
+  <br>
+
+
+
+
+
+  <br>
+  <br>
+  <br>
+  <!--comment -->
+
+  <!--   <div class=" p-3 container bg-light comment" style="display:none;">
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                    <h4 class=""> Post Your Comment</h4>
+                                                                                                                                                                                                                                                                                                                                                                                                                                    <br>
+                                                                                                                                                                                                                                                                                                                                                                                                                                    <br>
+                                                                                                                                                                                                                                                                                                                                                                                                                                    <form action="/newComment/" method="post">
+                                                                                                                                                                                                                                                                                                                                                                                                                                      <textarea name="comment" class=" shadow form-control" cols="70" rols="50" required=""></textarea>
+                                                                                                                                                                                                                                                                                                                                                                                                                                      <br>
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                      <button class="btn btn-primary" type="submit"> Post Comment</button>
+                                                                                                                                                                                                                                                                                                                                                                                                                                    </form>
+                                                                                                                                                                                                                                                                                                                                                                                                                                  </div>
+
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                </div> -->
+
+
+
+
+
+
+
+
+
+
+
+  <%
+} %>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+  function downvote(a, bbz) {
+    async function fetchTextk(jj) {
+      try {
+        let response = await fetch(jj);
+        let data = await response.text();
+        let count = 0
+        let arr = JSON.parse(data)
+        for (vote of arr) {
+          let g = JSON.stringify(vote)
+          d = JSON.parse(g)
+          hh = JSON.stringify(d)
+          ggg = JSON.parse(hh)
+          count += ggg.votescount
+        }
+        document.getElementById(bbz).innerHTML = count
+
+      }
+      catch (err) {
+        alert("Please try again " + err + " "+a)
+      }
+    }
+
+    fetchTextk(a)
+
+
+
+  }
+
+
+
+
+  function upvote(a, bbz) {
+
+    async function fetchText(k) {
+      try {
+        let response = await fetch(k);
+        let data = await response.text();
+        let count = 0
+        arr = JSON.parse(data)
+        for (vote of arr) {
+          let g = JSON.stringify(vote)
+          d = JSON.parse(g)
+          hh = JSON.stringify(d)
+          ggg = JSON.parse(hh)
+          count += ggg.votescount
+        }
+        document.getElementById(bbz).innerHTML = count
+      }
+      catch (err) {
+        alert("Please try again " + err)
+      }
+    }
+
+    fetchText(a)
+
+
+  }
+
+
+
+
+  function upvoteans(a, bbz) {
+
+    async function fetchText(k) {
+      try {
+        let response = await fetch(k);
+        let data = await response.text();
+        let count = 0
+        arr = JSON.parse(data)
+        for (vote of arr) {
+          let g = JSON.stringify(vote)
+          d = JSON.parse(g)
+          hh = JSON.stringify(d)
+          ggg = JSON.parse(hh)
+          count += ggg.votescount
+        }
+        document.getElementById(bbz).innerHTML = count
+      }
+      catch (err) {
+        alert("Please try again " + err)
+      }
+    }
+
+    fetchText(a)
+
+
+  }
+
+
+
+  function downvoteans(a, bbz) {
+    async function fetchTextk(jj) {
+      try {
+        let response = await fetch(jj);
+        let data = await response.text();
+        let count = 0
+        let arr = JSON.parse(data)
+        for (vote of arr) {
+          let g = JSON.stringify(vote)
+          d = JSON.parse(g)
+          hh = JSON.stringify(d)
+          ggg = JSON.parse(hh)
+          count += ggg.votescount
+        }
+        document.getElementById(bbz).innerHTML = count
+
+      }
+      catch (err) {
+        alert("Please try again " + err + " "+a)
+      }
+    }
+
+    fetchTextk(a)
+
+
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  function myFunction() {
+    var x = document.getElementById("navs");
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+  }
+
+
+
+
+
+
+  function toggle() {
+    let  kj = document.getElementById("codearea");
+
+    if (kj.style.display === "none") {
+      kj.style.display = "block";
+    } else {
+      kj.style.display = "none";
+    }
+  }
+
+
+
+
+</script>
+
+</body>
+</html>

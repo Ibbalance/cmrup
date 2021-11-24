@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <style>
+    .menu {
+      width: 35px;
+      height: 5px;
+      background-color: white;
+      margin: 6px 0;
+    }
+
+  </style>
+
+
+  <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title></title>
+</head>
+<body>
+
+  <ul class="bg-dark nav">
+    <a onclick="myFunction()" class="nav-link">  <div class="bg-dark" id="menucontainer " style="margin:0">
+      <div class="menu"></div>
+      <div class="menu"></div>
+      <div class="menu"></div>
+    </div>
+    </a>
+    <a href="" class=" mx-auto nav-link pt-3 pl-4 text-white"> <img src="cmrlogo.png" width="100px" height="60px">   </a>
+
+
+  </ul>
+  <br />
+  <div id="navs" style="display:none;" class="container shadow ">
+    <ul class="navbar justify-content-center">
+      <a href="" class="nav-link"> <img width="70" height="70" class="img-thumbnail nav-link" src="/<%=currentuser.profilepic%>">    </a>
+
+      <a href="" class="nav-link"> <%=  currentuser.displayname  %>  </a>
+
+      <!--    <a href="" class="nav-link"> <img width="70" height="70" class="img-thumbnail nav-link" src="<%=currentuser.profilepic%>">    </a>
+                        <a href="" class="nav-link"> <%=  currentuser.displayname  %>  </a>
+                  -->
+
+      <a href="/modify" style="text-decoration-none"> Modify </a>
+
+    </ul>
+
+
+  </div>
+
+
+
+
+
+
+
+  <ul class="nav nav-pills nav-fill justify-content-between pt-4">
+    <a class="nav-link" href="/allquestions"> Questions</a>
+    <a class="nav-link" href="/tags"> Tags</a>
+    <a class="nav-link" href="/newQuestion"> Ask</a>
+  </ul>
+
+  <br>
+  <br>
+
+  <div class="mt-5 p-2 container bg-light shadow w-75 mx-auto">
+
+    <img width="70" height="70" class="img-thumbnail nav-link d-block mx-auto" src="/<%=userSearch.profilepic%>">   <p class="text-center">
+      <%= userSearch.displayname %>
+    </p>
+    <br>
+
+    <div class="row ">
+
+      <div class="col">
+
+
+        <h1 class="text-center btn btn-primary"> NO Of Questions Asked</h1>
+
+        <span class="text-center">( <%=  userSearch.questions.length %> )    </span>
+
+      </div>
+
+      <div class="col">
+        <h1 class="text-center btn btn-primary"> NO of Questions Answered  </h1>
+
+        <span class="text-center"> ( <%= userSearch.answers.length %>)</span>
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+<script>
+  function myFunction() {
+    var x = document.getElementById("navs");
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+  }
+
+</script>
+<script src="/javascripts/bootstrap.min.js"></script>
+
+
+</body>
+</html>
