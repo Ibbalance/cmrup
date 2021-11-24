@@ -13,9 +13,6 @@ router.get("/", async(req, res)=> {
   if (req.session.userid) {
 
 
-    let allquestions = await currentuser.questions.then(()=> {
-      console.log("ok")}).catch((h)=> {
-      console.log(h)})
 
 
     currentuser = await usersm.findOne({
@@ -24,6 +21,12 @@ router.get("/", async(req, res)=> {
       path: "questions", populate: {
         path: "tags"
       }}).then(()=> {
+
+      let allquestions = await currentuser.questions.then(()=> {
+        console.log("ok")}).catch((h)=> {
+        console.log(h)})
+
+
       res.render("modifylist", {
         allquestions, currentuser
       })
