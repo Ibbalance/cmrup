@@ -11,28 +11,21 @@ const router = express.Router();
 router.get("/", async(req, res)=> {
   session = req.session;
   if (req.session.userid) {
-
-
-
-
     currentuser = await usersm.findOne({
       email: req.session.userid
     }).populate({
       path: "questions", populate: {
         path: "tags"
       }}).then(()=> {
+      console.log("working")}).catch((err)=> {
+      console.log(err)})
 
-      allquestions = await currentuser.questions.then(()=> {
-        console.log("ok")}).catch((h)=> {
-        console.log(h)});
-
-
+    let allquestions = await currentuser.questions.then(()=> {
       res.render("modifylist", {
         allquestions, currentuser
       })
-      console.log("working")}).catch((err)=> {
-      console.log(err)})
-    /*await questions.find({}).populate("tags").populate("author").populate("votes").sort("votes");*/
+      console.log("ok")}).catch((h)=> {
+      console.log(h)})/*await questions.find({}).populate("tags").populate("author").populate("votes").sort("votes");*/
     // res.send(allquestions)
 
     /*   res.send(allquestions) */
