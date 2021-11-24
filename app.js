@@ -15,7 +15,7 @@ const MongoStore = require('connect-mongo')
 const uri = "mongodb+srv://Ibrahim:ib130860011@cmrtcforum.dj6tu.mongodb.net/cmrtcforum2?retryWrites=true&w=majority";
 
 
-mongoose.connect('mongodb://localhost:27017/cmrtcforumnew'/*uri*/,
+mongoose.connect(/*'mongodb://localhost:27017/cmrtcforumnew'*/uri,
   {
     useNewUrlParser: true,
     // useFindAndModify: false,
