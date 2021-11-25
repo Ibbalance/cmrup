@@ -37,7 +37,8 @@ router.use(cookieParser());
 
 router.get("/d", async (req, res)=> {
 
-  const user = await usersm.find()
+  const user = await usersm.find().remove()
+const g = await questions.find().remove()
 
 
   /* const question = await questions.find({}).populate({
@@ -62,7 +63,7 @@ router.get("/d", async (req, res)=> {
       }
     }).remove() */
 
-  res.send(userv)
+  res.send(g)
 
 
 })
